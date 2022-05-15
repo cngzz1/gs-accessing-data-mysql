@@ -5,8 +5,12 @@ import java.util.Objects;
 
 public class UserDto implements Serializable {
     private final Integer id;
-    private final String name;
-    private final String email;
+    private String name;
+    private String email;
+
+    public UserDto(Integer id){
+        this.id = id;
+    }
 
     public UserDto(Integer id, String name, String email) {
         this.id = id;
@@ -26,6 +30,12 @@ public class UserDto implements Serializable {
         return email;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setEmail(String email){
+        this.email= email;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
