@@ -11,21 +11,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class MapService {
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public UserDto getUserLocation(Integer id) {
         return convertToUserLocationDTO(Objects.requireNonNull(userRepository.findById(id).orElse(null)));
     }
 
     public List<UserDto> getAllUsersLocation() {
-        List<UserDto> list = new ArrayList<>();
+        List<UserDto> list = new CopyOnWriteArrayList<>();
         for (User<?> user : userRepository.findAll()) {
             UserDto userDto = convertToUserLocationDTO(user);
             list.add(userDto);
